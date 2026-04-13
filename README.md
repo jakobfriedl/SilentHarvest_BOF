@@ -1,5 +1,5 @@
 # SilentHarvest BOF
-This is a BOF implementation of [Furkan Göksel's](https://x.com/R0h1rr1m) [SilentNimvest](https://github.com/frkngksl/SilentNimvest/tree/main) project, which is in turn based on the [SilentHarvest research](https://sud0ru.ghost.io/silent-harvest-extracting-windows-secrets-under-the-radar/) by [Haidar](https://x.com/haider_kabibo). It's effectively another registry-only credential dumper, replicating hashdump capabilities as well as retrieving secrets stored in the  HKLM\SECURITY\Policy\Secrets subkeys. Old capabilities with a "new" "sneaky" way of delivering.
+This is a BOF implementation of [Furkan Göksel's](https://x.com/R0h1rr1m) [SilentNimvest](https://github.com/frkngksl/SilentNimvest/tree/main) project, which is in turn based on the [SilentHarvest research](https://sud0ru.ghost.io/silent-harvest-extracting-windows-secrets-under-the-radar/) by [Haidar](https://x.com/haider_kabibo). It's effectively another registry-only credential dumper, replicating hashdump capabilities as well as retrieving secrets stored in the  HKLM\SECURITY\Policy\Secrets subkeys. Old capabilities with a "new" "sneaky" way of delivering. Only requires SeBackupPrivilege (e.g. Administrator, doesn't require SYSTEM as it would normally).
 
 # Usage
 ![alt text](img/silentharvest_out.png)
@@ -9,6 +9,8 @@ Store the returned hashes in a file and then provide it along with your favorite
 ![alt text](img/hashcat.png)
 
 # Limitations
+This tool does not implement functionality to enable the SeBackupPrivilege in your Beacon token. That is the responsibility of the operator, either through the getprivs command or by implementing the code.
+
 This BOF only supports newer (Win 2016 / Win 10 and above) machines which implement AES encryption in their secret keeping. The legacy RC4 mechanism is not currently supported but would make for a great pull request from someone who has the time/desire.
 
 This tool is NOT intended to be a port of, or achieve feature parity with, Mimikatz. There are several complexities/possible scenarios that are not implemented, like smart card credential support, that would similarly make great PR's.
