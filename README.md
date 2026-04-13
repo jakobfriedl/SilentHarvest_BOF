@@ -8,6 +8,11 @@ This is a BOF implementation of [Furkan Göksel's](https://x.com/R0h1rr1m) [Sile
 Store the returned hashes in a file and then provide it along with your favorite word list to hashcat
 ![alt text](img/hashcat.png)
 
+# Limitations
+This BOF only supports newer (Win 2016 / Win 10 and above) machines which implement AES encryption in their secret keeping. The legacy RC4 mechanism is not currently supported but would make for a great pull request from someone who has the time/desire.
+
+This tool is NOT intended to be a port of, or achieve feature parity with, Mimikatz. There are several complexities/possible scenarios that are not implemented, like smart card credential support, that would similarly make great PR's.
+
 # Compilation
 This tool was written without the use of normal BOF API declarations (e.g. a bofdefs.h file). As outlined in this [blog post](https://blog.cybershenanigans.space/posts/writing-bofs-without-dfr/) by [Matt Ehrnschwender](https://x.com/M_alphaaa), it's possible to use objcopy to patch the proper symbols of format `DLL$API` into the BOF post-compilation. The Makefile for this tool calls objcopy, passing an imports_silentharvestXX.txt file containing the proper symbol replacements which then renders the BOF usable. 
 
