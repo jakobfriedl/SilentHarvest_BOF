@@ -35,11 +35,12 @@ BOOL IsPrivilegeEnabled()
     PRIVILEGE_SET privSet = { 0 };
     BOOL          bResult = FALSE;
 
-    if (!OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &hToken)) 
-    {
-        BeaconFormatPrintf(&pOutBuf, "[-] %s: OpenProcessToken failed: %lu\n", __func__, GetLastError());
-        return bResult;
-    }
+    if (!OpenThreadToken(GetCurrentThread(), TOKEN_QUERY, TRUE, &hToken))
+        if (!OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &hToken))
+        {
+            BeaconFormatPrintf(&pOutBuf, "[-] %s: OpenProcessToken failed: %lu\n", __func__, GetLastError());
+            return bResult;
+        }
 
     if (!LookupPrivilegeValueA(NULL, "SeBackupPrivilege", &luid)) 
     {

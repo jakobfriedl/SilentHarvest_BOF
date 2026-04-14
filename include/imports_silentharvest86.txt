@@ -13,6 +13,7 @@ __imp__calloc __imp__MSVCRT$calloc
 __imp__CloseHandle@4 __imp__KERNEL32$CloseHandle
 __imp__free __imp__MSVCRT$free
 __imp__GetCurrentProcess@0 __imp__KERNEL32$GetCurrentProcess
+__imp__GetCurrentThread@0 __imp__KERNEL32$GetCurrentThread
 __imp__GetLastError@0 __imp__KERNEL32$GetLastError
 __imp__LookupPrivilegeValueA@12 __imp__ADVAPI32$LookupPrivilegeValueA
 __imp__memcmp __imp__MSVCRT$memcmp
@@ -23,6 +24,7 @@ __imp__NtEnumerateValueKey@24 __imp__NTDLL$NtEnumerateValueKey
 __imp__NtOpenKeyEx __imp__NTDLL$NtOpenKeyEx
 __imp__NtQueryKey@20 __imp__NTDLL$NtQueryKey
 __imp__OpenProcessToken@12 __imp__KERNEL32$OpenProcessToken
+__imp__OpenThreadToken@16 __imp__ADVAPI32$OpenThreadToken
 __imp__PrivilegeCheck@12 __imp__ADVAPI32$PrivilegeCheck
 __imp__RegQueryMultipleValuesW@20 __imp__ADVAPI32$RegQueryMultipleValuesW
 __imp__RtlInitUnicodeString@8 __imp__NTDLL$RtlInitUnicodeString
